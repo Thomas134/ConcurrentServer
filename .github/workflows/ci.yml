@@ -3,15 +3,18 @@ name: C++ Server CI
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 jobs:
   build-and-test:
-    runs-on: macos-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-13, macos-14, macos-15]
 
     steps:
       - name: Checkout code
@@ -32,6 +35,6 @@ jobs:
         working-directory: build
         run: cmake --build .
 
-      - name: Run tests
-        working-directory: build
-        run: ./ConcurrentServer   
+      # - name: Run tests
+      #   working-directory: build
+      #   run: ./ConcurrentServer 

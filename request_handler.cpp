@@ -175,10 +175,16 @@ void RequestHandler::HandleGet(const std::string& path, std::string& response) {
 
             std::tm timeinfo;
             std::ostringstream time_ss;
-            if (1) {
-            // if (localtime_s(&timeinfo, &cftime) == 0) {
+
+        #if defined(_WIN32) || defined(_WIN64)
+            if (localtime_s(&timeinfo, &cftime) == 0) {
                 time_ss << std::put_time(&timeinfo, "%Y-%m-%d %H:%M:%S");
             }
+        #elif defined(__APPLE__) || defined(__linux__)
+            if (localtime_r(&cftime, &timeinfo) != nullptr) {
+                time_ss << std::put_time(&timeinfo, "%Y-%m-%d %H:%M:%S");
+            }
+        #endif
             else {
                 time_ss << "Invalid date";
             }

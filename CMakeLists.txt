@@ -5,7 +5,7 @@ project(ConcurrentServer)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Boost 1.66 REQUIRED COMPONENTS system thread)
+find_package(Boost REQUIRED COMPONENTS system thread)
 if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
 endif()
