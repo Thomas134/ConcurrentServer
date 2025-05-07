@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>并发服务器</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .sidebar {
+            width: 200px;
+            background: #333;
+            color: white;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+            .sidebar a {
+                display: block;
+                color: white;
+                text-decoration: none;
+                padding: 10px;
+                margin: 5px 0;
+                width: 100%;
+                text-align: left;
+            }
+
+                .sidebar a.active {
+                    background: #555;
+                }
+
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="index.html" class="active">上传文件</a>
+        <a href="performance.html">服务器性能</a>
+        <a href="settings.html">设置</a>
+    </div>
+    <div class="content">
+        <h2>服务器性能</h2>
+        <p>运行时间: <span id="duration">0</span> 秒</p>
+        <p>请求总数: <span id="totalRequests">0</span></p>
+        <p>吞吐量: <span id="throughput">0</span> req/s</p>
+    </div>
+    <script>// 获取当前页面 URL 并设置高亮
+        const links = document.querySelectorAll('.sidebar a');
+        links.forEach(link => {
+            if (link.href === window.location.href) {
+                link.classList.add('active');
+            }
+        });</script>
+    <script src="script.js"></script>
+</body>
+</html>

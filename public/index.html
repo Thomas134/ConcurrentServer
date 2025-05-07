@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>并发服务器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <a href="index.html" class="active">上传文件</a>
+        <a href="performance.html">服务器性能</a>
+        <a href="settings.html">设置</a>
+    </div>
+
+    <div class="content">
+        <h2>已上传文件</h2>
+        <!-- 文件列表 -->
+        <ul id="file-list" class="file-list"></ul>
+
+        <!-- 新增：分页控件 -->
+        <div class="pagination">
+            <button id="prev-page">上一页</button>
+            <span id="page-info">第 1 页</span>
+            <button id="next-page">下一页</button>
+        </div>
+
+        <hr>
+
+        <h1>上传文件</h1>
+        <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" id="fileInput" name="file">
+            <button type="submit">确认</button>
+        </form>
+        <p id="message"></p>
+
+        <!-- 上传进度可以之后恢复 -->
+        <!-- <progress id="uploadProgress" value="0" max="100" style="width: 80%;"></progress> -->
+        <!-- <p id="progressText">上传进度: 0%</p> -->
+    </div>
+
+    <script src="script.js"></script> <!-- 你的原有脚本 -->
+</body>
+</html>
